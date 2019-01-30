@@ -3,7 +3,15 @@ $conexion = new mysqli("localhost", "root", "", "liga");
 if ($conexion->connect_errno) {
     echo "Fallo al conectar a MySQL: (" . $conexion->connect_errno . ") " . $conexion->connect_error;
 }else{
-  $resultado = $conexion->query("SELECT * FROM equipo");
+  $consulta="INSERT INTO equipo (id_equipo, nombre, ciudad, web, puntos) VALUES (8, 'E Deci', 'Catarroja City', 'sin web oficial', 1000)";
+  //echo $consulta;
+  $resultado = $conexion->query($consulta);
+  if(!$resultado) echo $conexion->error;
+  //Mostrar a partir de la DB el ultimo equipo insertado
+  //$consulta="SELECT * FROM equipo WHERE id_equipo=8";
+
+  $consulta="SELECT * FROM equipo ORDER BY id_equipo DESC LIMIT 1";
+  $resultado = $conexion->query($consulta);
 }
  ?>
 <!DOCTYPE html>
@@ -13,19 +21,9 @@ if ($conexion->connect_errno) {
     <title></title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
     <div class="container">
-      <nav>
-        <div class="nav-wrapper">
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="insertarEquip.php">Nuevo Equipo</a></li>
-            <li><a href="#">#</a></li>
-          </ul>
-        </div>
-      </nav>
-      <h2>Equipo<a href="insertarEquip.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a></h2>
       <table>
         <tr>
           <th>id</th>
@@ -42,9 +40,5 @@ if ($conexion->connect_errno) {
           }
         ?>
       </table>
-
     </div>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
-</html>
