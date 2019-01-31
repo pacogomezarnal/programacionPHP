@@ -3,7 +3,8 @@ $conexion = new mysqli("localhost", "root", "", "liga");
 if ($conexion->connect_errno) {
     echo "Fallo al conectar a MySQL: (" . $conexion->connect_errno . ") " . $conexion->connect_error;
 }else{
-  $resultado = $conexion->query("SELECT * FROM equipo");
+  $id=$_GET["idEquipo"];
+  $resultado = $conexion->query("SELECT * FROM equipo WHERE id_equipo=".$id);
 }
  ?>
 <!DOCTYPE html>
@@ -25,7 +26,6 @@ if ($conexion->connect_errno) {
           </ul>
         </div>
       </nav>
-      <h2>Equipo<a href="insertarEquip.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a></h2>
       <table>
         <tr>
           <th>id</th>
@@ -35,16 +35,12 @@ if ($conexion->connect_errno) {
         <?php
           foreach ($resultado as $equipo) {
             echo "<tr>";
-            echo "<td><a href='detalleEquipo.php?idEquipo=".$equipo['id_equipo']."'>".$equipo['id_equipo']."</a></td>";
+            echo "<td>".$equipo['id_equipo']."</td>";
             echo "<td>".$equipo['nombre']."</td>";
             echo "<td>".$equipo['ciudad']."</td>";
             echo "</tr>";
           }
         ?>
       </table>
-
     </div>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
-</html>
