@@ -3,7 +3,8 @@ $conexion = new mysqli("localhost", "root", "", "liga");
 if ($conexion->connect_errno) {
     echo "Fallo al conectar a MySQL: (" . $conexion->connect_errno . ") " . $conexion->connect_error;
 }else{
-  $resultado = $conexion->query("SELECT * FROM equipo");
+  $equipo=$_GET["equipo"];
+  $resultado = $conexion->query("SELECT * FROM jugador WHERE equipo=".$equipo);
 }
  ?>
 <!DOCTYPE html>
@@ -25,19 +26,19 @@ if ($conexion->connect_errno) {
           </ul>
         </div>
       </nav>
-      <h2>Equipo</h2>
+      <h2>Jugadores</h2>
       <table>
         <tr>
           <th>id</th>
           <th>Nombre</th>
-          <th>ciudad</th>
+          <th>Apellido</th>
         </tr>
         <?php
-          foreach ($resultado as $equipo) {
+          foreach ($resultado as $jugador) {
             echo "<tr>";
-            echo "<td><a href=jugadoresEquipo.php?equipo=".$equipo['id_equipo'].">".$equipo['id_equipo']."</a></td>";
-            echo "<td>".$equipo['nombre']."</td>";
-            echo "<td>".$equipo['ciudad']."</td>";
+            echo "<td>".$jugador['id_jugador']."</td>";
+            echo "<td>".$jugador['nombre']."</td>";
+            echo "<td>".$jugador['apellido']."</td>";
             echo "</tr>";
           }
         ?>
