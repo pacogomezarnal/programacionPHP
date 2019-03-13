@@ -35,12 +35,17 @@ if ($conexion->connect_errno) {
           <th>Posicion</th>
         </tr>
         <?php
+
           foreach ($resultado as $jugador) {
             echo "<tr>";
             echo "<td>".$jugador['id_jugador']."</td>";
             echo "<td>".$jugador['nombre']."</td>";
             echo "<td>".$jugador['apellido']."</td>";
-            echo "<td>".$jugador['posicion']."</td>";
+            if($jugador['posicion']=="Base"){
+              echo "<td><strong>".$jugador['posicion']."</strong></td>";
+            }else{
+              echo "<td>".$jugador['posicion']."</td>";
+            }
             echo "</tr>";
           }
         ?>

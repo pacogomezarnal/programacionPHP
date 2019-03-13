@@ -14,6 +14,7 @@ if ($conexion->connect_errno) {
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
     <div class="container">
@@ -28,9 +29,10 @@ if ($conexion->connect_errno) {
       <h2>Equipo</h2>
       <table>
         <tr>
-          <th>id</th>
+          <th>Id</th>
           <th>Nombre</th>
-          <th>ciudad</th>
+          <th>Ciudad</th>
+          <th>Partidos jugados</th>
         </tr>
         <?php
           foreach ($resultado as $equipo) {
@@ -38,6 +40,7 @@ if ($conexion->connect_errno) {
             echo "<td><a href=jugadoresEquipo.php?equipo=".$equipo['id_equipo'].">".$equipo['id_equipo']."</a></td>";
             echo "<td>".$equipo['nombre']."</td>";
             echo "<td>".$equipo['ciudad']."</td>";
+            echo "<td><a href=partidosEquipo.php?equipo=".$equipo['id_equipo']."><i class='fas fa-eye'></i>  ver</a></td>";
             echo "</tr>";
           }
         ?>
