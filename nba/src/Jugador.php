@@ -4,6 +4,10 @@
  */
 class Jugador
 {
+  private $conexion=null;
+  private $codigo;
+  private $nombre;
+  private $peso;
 
   function __construct()
   {
@@ -27,21 +31,24 @@ class Jugador
       $error="No has introducido el Peso";
     }else{
       $error=false;
+      $this->codigo=$post["codigo"];
+      $this->nombre=$post["Nombre"];
+      $this->peso=$post["Peso"];
     }
     return $error;
   }
 
   public function conectar(){
-    $conexion = new mysqli("localhost", "root", "", "nba");
-    if ($conexion->connect_errno) {
-        echo "Fallo al conectar a MySQL: (" . $conexion->connect_errno . ") " . $conexion->connect_error;
+    $this->conexion = new mysqli("localhost", "root", "", "nba");
+    if ($this->conexion->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $this->conexion->connect_errno . ") " . $this->conexion->connect_error;
     }
   }
-
   public function insertarJugador(){
 
     $consulta="INSERT INTO jugadores (codigo, Nombre, Procedencia, Altura, Peso, Posicion, Nombre_equipo)
-                VALUES ('614', 'Paco', NULL, NULL, '85', NULL, NULL)";
+                VALUES ($this->codigo, '$this->nombre', NULL, NULL, $this->peso, NULL, NULL)";
+    $this->conexion->query($consulta);
   }
 }
 

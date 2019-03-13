@@ -3,10 +3,12 @@ require "./../src/Jugador.php";
 
   $j=new Jugador();
   $error=$j->comprobarCampos($_POST);
+
   if(isset($error)){
-      if($error==false){
+      if($error===false){
         //NO HAY ERROR
         $j->conectar();
+        $j->insertarJugador();
       }
   }
 ?>
