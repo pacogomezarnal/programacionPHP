@@ -40,7 +40,8 @@ class Jugador
 
   public function insertarJugador(){
 
-    $consulta=INSERT INTO `jugadores` (`codigo`, `Nombre`, `Procedencia`, `Altura`, `Peso`, `Posicion`, `Nombre_equipo`) VALUES ('614', 'Paco', NULL, NULL, '85', NULL, NULL);
+    $consulta="INSERT INTO jugadores (codigo, Nombre, Procedencia, Altura, Peso, Posicion, Nombre_equipo)
+                VALUES ('614', 'Paco', NULL, NULL, '85', NULL, NULL)";
   }
 }
 
