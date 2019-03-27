@@ -5,6 +5,8 @@
 class Jugador
 {
   private $conexion=null;
+  //Ejemplo de propiedad publica
+  public $codigoExterno;
   private $codigo;
   private $nombre;
   private $peso;
@@ -49,6 +51,14 @@ class Jugador
     $consulta="INSERT INTO jugadores (codigo, Nombre, Procedencia, Altura, Peso, Posicion, Nombre_equipo)
                 VALUES ($this->codigo, '$this->nombre', NULL, NULL, $this->peso, NULL, NULL)";
     $this->conexion->query($consulta);
+  }
+
+  public function setCodigo($numero){
+    if($numero>0) $this->codigo=numero;
+  }
+
+  public function getCodigo(){
+    return $this->codigo;
   }
 }
 

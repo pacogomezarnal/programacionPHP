@@ -2,7 +2,9 @@
 require "./../src/Jugador.php";
 
   $j=new Jugador();
+  $j2=new Jugador();
   $error=$j->comprobarCampos($_POST);
+  $j->setCodigo(-3.5);
 
   if(isset($error)){
       if($error===false){
