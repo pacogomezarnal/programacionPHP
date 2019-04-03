@@ -2,9 +2,9 @@
 /**
  * Jugador
  */
-class Jugador
+class Jugador extends DB
 {
-  private $conexion=null;
+
   //Ejemplo de propiedad publica
   public $codigoExterno;
   private $codigo;
@@ -40,12 +40,7 @@ class Jugador
     return $error;
   }
 
-  public function conectar(){
-    $this->conexion = new mysqli("localhost", "root", "", "nba");
-    if ($this->conexion->connect_errno) {
-        echo "Fallo al conectar a MySQL: (" . $this->conexion->connect_errno . ") " . $this->conexion->connect_error;
-    }
-  }
+
   public function insertarJugador(){
 
     $consulta="INSERT INTO jugadores (codigo, Nombre, Procedencia, Altura, Peso, Posicion, Nombre_equipo)
