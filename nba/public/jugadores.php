@@ -1,6 +1,5 @@
 <?php
-session_start();
-$_SESSION["equipo"]=$_POST["equipo"];
+require "./assets/seguridad.php";
  ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
